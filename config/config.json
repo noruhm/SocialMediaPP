@@ -1,15 +1,9 @@
 {
   "development": {
     "username": "postgres",
-<<<<<<< HEAD
-    "password": "root",
-    "database": "InstaPP",
-    "host": "localhost",
-=======
     "password": "postgres",
     "database": "social_media",
     "host": "127.0.0.1",
->>>>>>> c8ed6933fb4d839e27dc8ff51bbd5e19a5e22416
     "dialect": "postgres"
   },
   "test": {
