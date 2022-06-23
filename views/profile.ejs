@@ -35,15 +35,16 @@
                                 <div class="row">
                                     <p>📍 <%= el.location %> on <%= dateFormatter(el.createdAt) %></p>
                                 </div>
+                                <% if(userId == el.UserId) {%> 
                                 <div class="row mb-2">
                                     <div class="col">
                                         <a href="/edit/<%= el.id %>"><button class="btn btn-primary w-100">Edit</button></a>
                                     </div>
+                                    
                                     <div class="col">
                                         <a href="/delete/<%= el.id %>"><button class="btn btn-danger w-100">Delete</button></a>
                                     </div>
-                                  
-                                   
+                                <% } %> 
                                 </div>
 
                             </div>

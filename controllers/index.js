@@ -47,6 +47,8 @@ class Controller{
     static profile(req,res){
         const { username } = req.params
         const data ={}
+        const { userId } =req.session
+        
         User.findOne({where:{username:username}})
         .then(user=>{
             const id = user.id
@@ -60,7 +62,7 @@ class Controller{
             return Tag.findAll()
         })
         .then(tag=>{
-            res.render('profile', {result:data.result, tag, dateFormatter})
+            res.render('profile', {result:data.result, tag, dateFormatter, userId})
         })
         .catch(err=>{
             res.send(err)
