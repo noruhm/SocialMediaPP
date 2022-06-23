@@ -16,6 +16,6 @@ module.exports = {
   },
 
    down (queryInterface, Sequelize) {
-   return queryInterface.removeConstarint('Post_tags', 'fkey_post_tag')
+   return queryInterface.removeConstraint('Post_tags', 'fkey_post_tag')
   }
 };
