@@ -1,22 +1,8 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "pg": "^8.7.3",
-    "sequelize": "^6.21.0"
-  },
-  "name": "socialmediapp",
-  "description": "```\r npm i -g sequelize-cli\r npm i sequelize pg express ejs\r npm init -y\r sequelize init\r ```",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
-=======
   "name": "socialmediapp",
   "version": "1.0.0",
   "description": "echo \"# SocialMediaPP\"",
   "main": "index.js",
->>>>>>> c8ed6933fb4d839e27dc8ff51bbd5e19a5e22416
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,9 +16,6 @@
   "bugs": {
     "url": "https://github.com/noruhm/SocialMediaPP/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/noruhm/SocialMediaPP#readme"
-=======
   "homepage": "https://github.com/noruhm/SocialMediaPP#readme",
   "dependencies": {
     "ejs": "^3.1.8",
@@ -40,5 +23,4 @@
     "pg": "^8.7.3",
     "sequelize": "^6.21.0"
   }
->>>>>>> c8ed6933fb4d839e27dc8ff51bbd5e19a5e22416
 }
