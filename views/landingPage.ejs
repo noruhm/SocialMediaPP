@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <%- include('partials/header', {title: 'Hackstagram'}); %>
 </head>
 <body>
-    <h1>TTTTTTTTTEEEEEEESSSSSSTTTTTT</h1>
+    <%- include('partials/navbar'); %>
+
+    <div class="container w-25 mt-5 mx-auto">
+        <div class="row">
+            <h2 class="text-center mb-5">Welcome to Hackstagram!</h2>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <a href="/account/signin"><button class="btn btn-primary w-100">Log In</button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="/account/register"><button class="btn btn-primary w-100">Register</button></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

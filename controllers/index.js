@@ -63,9 +63,9 @@ class Controller{
             const { title, imgUrl ,TagId} = req.body
         setTimeout(() => {
             const UserId = 1
-            Post.create({title, imgUrl ,TagId: +TagId, UserId : +UserId, location:'test'})
+            Post.create({title, imgUrl ,TagId: +TagId, UserId : +UserId, location})
             .then(result=>{
-                res.redirect('/')
+                res.redirect('/home')
             })
             .catch(err=>{
                 console.log(err)
