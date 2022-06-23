@@ -23,8 +23,17 @@ function cekSignIn(req,res,next){
 
 router.get('/', Controller.landingPage)
 
-router.get('/home', cekSignIn, Controller.home) 
+router.get('/home', cekSignIn, Controller.showAllPost) 
 
 router.use('/account', accountRoutes)
 
-module.exports= router
+router.get('/profile/', Controller.profile)
+
+router.get('/addPost', Controller.formAddPost)
+
+router.post('/addPost', Controller.addPost)
+
+
+
+
+module.exports=router

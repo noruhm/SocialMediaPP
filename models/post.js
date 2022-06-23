@@ -11,17 +11,44 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.hasOne(models.Tag)
+      Post.belongsTo(models.Tag)
       Post.belongsTo(models.User)
     }
   }
   Post.init({
-    content: DataTypes.STRING,
-    imgUrl: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: 'Title is Required'
+        },
+        notEmpty:{
+          msg:'Title is Required'
+        }
+      }
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: 'Title is Required'
+        },
+        notEmpty:{
+          msg:'Title is Required'
+        }
+      }
+    },
     location: DataTypes.STRING,
     TagId: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
   }, {
+    hooks:{
+      beforeCreate :(data, options) =>{
+
+      }
+    },
     sequelize,
     modelName: 'Post',
   });
