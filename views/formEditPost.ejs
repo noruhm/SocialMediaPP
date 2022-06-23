@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('partials/header', {title: 'Hackstagram'}); %>
 </head>
 <body>
-    <form action="/edit/<%= result.id %>" method="post">
-        <div>
-            <img src="<%= result.imgUrl %>" alt="<%= result.imgUrl %>">
-        </div>
-        <div>
-            <label for="">Title:</label>
-            <input type="text" name="title" id="" value="<%= result.title %>">
-        </div>
-        <div>
-            <%= JSON.stringify(result) %> 
-            <label for="">Tag</label>
-            <select name="TagId" id="">
-                <% tag.forEach(el=>{ %>
-                    <% if(result.TagId == el.id) {%>
-                        <option value="<%= result.TagId %> "><%= el.name %> </option>
-                    <% }else{ %>
-                        <option value="<%= el.id %>"><%= el.name %></option>
-                    <% } %>   
-                <% }) %> 
-            </select>
-            <div>
-                <input type="submit" value="Save">
+    <%- include('partials/navbar'); %>
+
+    <h2 class="text-center mt-5">Edit Post</h2>
+
+    <div class="container w-75 p-5">
+        <form action="/edit/<%= result.id %>" method="post">
+            <div class="row w-25 mx-auto">
+                <img src="<%= result.imgUrl %>" alt="<%= result.imgUrl %>">
             </div>
-        </div>
-    </form>
+            <div class="row my-3 ">
+                <label for="" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" id="" value="<%= result.title %>">
+            </div>
+            <div class="row">
+                <label for="">Tag</label>
+                <select class="form-select" name="TagId" id="">
+                    <% tag.forEach(el=>{ %>
+                        <% if(result.TagId == el.id) {%>
+                            <option value="<%= result.TagId %> " selected><%= el.name %> </option>
+                        <% }else{ %>
+                            <option value="<%= el.id %>"><%= el.name %></option>
+                        <% } %>   
+                    <% }) %> 
+                </select>
+            </div>
+            <div class="row mt-5">
+                <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+
+   
 </body>
 </html>

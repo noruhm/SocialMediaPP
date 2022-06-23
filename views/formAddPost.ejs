@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Post</title>
+    <%- include('partials/header', {title: 'Hackstagram'}); %>
 </head>
 <body>
-    <h1>
-        Add Post
-    </h1>
-    <div>
+    <%- include('partials/navbar'); %>
+
+    <h2 class="text-center mt-5">Add Post</h2>
+
+    <div class="container w-50">
         <form action="/addPost" method="post">
-            <div>
-                <label for="">Title:</label>
-                <input type="text" name="title">
+            <div class="row">
+                <label for="" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control">
             </div>
-            <div>
-                <label for="">Image Url:</label>
-                <input type="text" name="imgUrl" id="">
+            <div class="row">
+                <label for="" class="form-label">Image Url</label>
+                <input type="text" name="imgUrl" id="" class="form-control">
             </div>
-            <div>
-                <select name="TagId" id="">
+            <div class="row">
+                <label for="" class="form-label">Tag</label>
+                <select name="TagId" id="" class="form-select">
                     <% result.forEach(el => { %>
                         <option value="<%= el.id %>"><%= el.name %></option>
                     <% }) %> 
                 </select>
             </div>
-            <input type="submit" value="test">
+            <div class="row mt-5">
+                <input type="submit" value="Upload" class="btn btn-primary">
+            </div>
         </form>
     </div>
 </body>

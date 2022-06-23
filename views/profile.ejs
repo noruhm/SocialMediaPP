@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <%- include('partials/header', {title: 'Hackstagram'}); %>
 </head>
 <body>
-    <div>
-        <p>Hello <%= result.username %></p>
-        <a href="/home">Home</a>
-        <% result.Posts.forEach(el=>{ %> 
-            <div>
-                <img src="<%= el.imgUrl %>" alt="<%= el.imgUrl %>">
-            </div>
-            <div>
-                <label for=""><%= el.title %></label>
-            </div>
-            <div>
-                <% tag.forEach(post=>{ %>
-                    <% if(el.TagId === post.id){ %> 
-                        <p><%= post.name %> </p>
-                        <% } %> 
-                <% }) %>  
-            </div>
-            <div>
-                <button><a href="/edit/<%= el.id %>">Edit</a></button>
-                <button><a href="/delete/<%= el.id %>">Delete</a></button>
-            </div>
-        <% }) %> 
+    <%- include('partials/navbar'); %>
+
+    <div class="container w-75% p-5">
+
+        <div class="row">
+            <h2 class="text-center">Posts by <%= result.username %></h2>
+        </div>
+        <div class="row">
+            <a href="/home" class="text-center">Back to Home</a>
+        </div>
+        <div class="row">
+            <% result.Posts.forEach(el=>{ %> 
+
+                <div class="row mx-auto mb-3 mt-5">
+                            <div class="card w-50 mx-auto">
+                                <div class="row ">
+                                    <img src="<%= el.imgUrl %>" alt="<%= el.imgUrl %>">
+                                </div>
+                                <div class="row">
+                                    <b ><%= el.title %></b>
+                                </div>
+                                <div class="row">
+                                    <% tag.forEach(post=>{ %>
+                                        <% if(el.TagId === post.id){ %> 
+                                            <p><%= post.name %> </p>
+                                            <% } %> 
+                                    <% }) %>  
+                                </div>
+                                <div class="row">
+                                    <p>📍 <%= el.location %> on <%= dateFormatter(el.createdAt) %></p>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <a href="/edit/<%= el.id %>"><button class="btn btn-primary w-100">Edit</button></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="/delete/<%= el.id %>"><button class="btn btn-danger w-100">Delete</button></a>
+                                    </div>
+                                  
+                                   
+                                </div>
+
+                            </div>
+                        </div>
+
+
+            <% }) %> 
+        </div>
+
     </div>
+
 </body>
 </html>

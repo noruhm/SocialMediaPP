@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Tag.hasOne(models.Post)
     }
+
+    static formatTag(value){
+      return `#${value}`
+    }
   }
   Tag.init({
     name: DataTypes.STRING

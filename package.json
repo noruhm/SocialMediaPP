@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -7,5 +8,23 @@
     "location-by-ip": "^1.0.1",
     "pg": "^8.7.3",
     "sequelize": "^6.21.0"
-  }
+  },
+  "name": "socialmediapp",
+  "description": "```\r npm i sequelize pg express ejs bcryptjs express-session\r npm install --save location-by-ip\r sequelize db:create \r sequelize db:migrate\r ```",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noruhm/SocialMediaPP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noruhm/SocialMediaPP/issues"
+  },
+  "homepage": "https://github.com/noruhm/SocialMediaPP#readme"
 }
