@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <button><a href="/profile"> profile</a></button>
+    <form action="/home" method="get">
+        <input type="text" name="search" id="" placeholder="username"> <button type="submit">Search</button> 
+    </form> <br>
+    <div>
+        <% post.forEach(post=>{ %>
+            <div>
+                <img src="<%= post.imgUrl %>" alt="<%= post.imgUrl %>">
+                <h4><%= post.title %> </h4>
+                <p><%= post.location %> </p>
+            </div>
+        <% }) %> 
+    </div>
+
+</body>
+</html>
