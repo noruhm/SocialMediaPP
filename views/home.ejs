@@ -13,11 +13,13 @@
         <input type="text" name="search" id="" placeholder="username"> <button type="submit">Search</button> 
     </form> <br>
     <div>
-        <% post.forEach(post=>{ %>
+        <%= JSON.stringify(post) %> 
+        <% post.forEach(pst=>{ %>
             <div>
-                <img src="<%= post.imgUrl %>" alt="<%= post.imgUrl %>">
-                <h4><%= post.title %> </h4>
-                <p><%= post.location %> </p>
+                <a href="/profile/<%= pst.User.username %>"><%= pst.User.username %> </a>
+                <img src="<%= pst.imgUrl %>" alt="<%= pst.imgUrl %>">
+                <h4><%= pst.title %> </h4>
+                <p><%= pst.location %> </p>
             </div>
         <% }) %> 
     </div>

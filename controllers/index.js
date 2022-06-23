@@ -12,7 +12,8 @@ class Controller{
         const { userId , username  } = req.session
 
         const options = {
-            order:[['createdAt', 'DESC']]
+            order:[['createdAt', 'DESC']],
+            include: User
         }
 
         if(search){
