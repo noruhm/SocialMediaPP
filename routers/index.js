@@ -25,6 +25,8 @@ router.get('/', Controller.landingPage)
 
 router.get('/home', cekSignIn, Controller.showAllPost) 
 
+router.get('/logout', Controller.logOut)
+
 router.use('/account', accountRoutes)
 
 router.get('/profile/:username', cekSignIn, Controller.profile)

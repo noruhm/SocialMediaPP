@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <%- include('partials/header', {title: 'Hackstagram'}); %>
 </head>
 <body>
-    <button><a href="/profile/<%= username %>">My profile</a></button>
-    <button><a href="/addPost/">Add Post</a></button>
-    <form action="/home" method="get">
-        <input type="text" name="search" id="" placeholder="username"> <button type="submit">Search</button> 
-    </form> <br>
-    <div>
-        <%= JSON.stringify(post) %> 
-        <% post.forEach(pst=>{ %>
-            <div>
-                <a href="/profile/<%= pst.User.username %>"><%= pst.User.username %> </a>
-                <img src="<%= pst.imgUrl %>" alt="<%= pst.imgUrl %>">
-                <h4><%= pst.title %> </h4>
-                <p><%= pst.location %> </p>
+    <%- include('partials/navbar'); %>
+
+    <div class="container p-5 mx-auto">
+        <div class="row">
+            <div class="col-10">
+                <form action="/home" method="get">
+                    <div class="row">
+                        <div class="col-10"> <input type="text" name="search" id="" placeholder="Search by title" class="form-control"> </div>
+                        <div class="col"><button type="submit" class="btn btn-light w-100">Search</button> </div>
+                    </div>
+                </form>
+                <div class="row mt-5">
+                    <% post.forEach(pst=>{ %>
+                        <div class="row mx-auto mb-3">
+                            <div class="card w-75 mx-auto">
+                                <div class="row ">
+                                    <img src="<%= pst.imgUrl %>" alt="<%= pst.imgUrl %>">
+                                </div>
+                                <div class="row">
+                                    <a href="/profile/<%= pst.User.username %>" class="link-primary"><%= pst.User.username %></a>
+                                </div>
+                                <div class="row">
+                                    <b><%= pst.title %> </b>
+                                </div>
+                                <div class="row">
+                                    <p> <%= pst.Tag.name %> </p>
+                                </div>
+                                <div class="row">
+                                    <p>📍 <%= pst.location %> on <%= dateFormatter(pst.createdAt) %></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    <% }) %> 
+                </div>
             </div>
-        <% }) %> 
+            <div class="col">
+                <div class="row mb-3">
+                    <a href="/profile/<%= username %>"><button class="btn btn-primary w-100">My Profile</button></a>
+                </div>
+                <div class="row">
+                    <a href="/addPost/"><button class="btn btn-primary w-100">Add Post</button></a>
+                </div>
+                <div class="row">
+                    <a href="/logout"><button class="btn btn-outline-primary w-100 mt-3">Logout</button></a>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+   
+       
     </div>
 
 </body>

@@ -1,10 +1,16 @@
 const { Post, Tag, User} = require('../models')
 const { Op } = require('sequelize')
+const dateFormatter = require('../helpers/dateFormatter')
 
 class Controller{
 
     static landingPage(req,res){
         res.render('landingPage')
+    }
+
+    static logOut(req,res){
+        req.session.destroy()
+        res.redirect('/')
     }
 
     static showAllPost(req,res){
@@ -13,7 +19,7 @@ class Controller{
 
         const options = {
             order:[['createdAt', 'DESC']],
-            include: User
+            include: [User, Tag]
         }
 
         if(search){
@@ -26,10 +32,14 @@ class Controller{
 
         Post.findAll(options)
         .then(post=>{
-            res.render('home', {post, userId, username})
+            post = post.map(e=>{
+                e.Tag.name = Tag.formatTag(e.Tag.name)
+                return e
+            })
+            res.render('home', {post, userId, username, dateFormatter})
         })
         .catch(err=>{
-            console.log(err)
+       
             res.send(err)
         })
     }
@@ -37,6 +47,8 @@ class Controller{
     static profile(req,res){
         const { username } = req.params
         const data ={}
+        const { userId } =req.session
+        
         User.findOne({where:{username:username}})
         .then(user=>{
             const id = user.id
@@ -50,11 +62,12 @@ class Controller{
             return Tag.findAll()
         })
         .then(tag=>{
-            res.render('profile', {result:data.result, tag})
+            res.render('profile', {result:data.result, tag, dateFormatter, userId})
         })
         .catch(err=>{
             res.send(err)
         })
+
     }
 
     static formAddPost(req,res){

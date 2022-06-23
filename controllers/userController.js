@@ -24,7 +24,6 @@ class UserController{
                 err = err.errors.map(e => {
                     return e.message
                 })
-                console.log(err)
 
                 res.redirect(`/account/register/?err=${err}`)
             })

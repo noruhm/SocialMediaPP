@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate:{
         notEmpty: {msg: 'Masukkan username'},
-        is: {args: ["^[a-z]+$",'i'], msg:'Username tidak boleh mengandung simbol'}
+        is: {args: ["^[a-zA-Z0-9_.-]*$",'i'], msg:'Username tidak boleh mengandung simbol'}
       }
     },
     email: { 
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate:{
         notEmpty: {msg: 'Masukkan password'},
-        len: {args: [8, 12], msg: 'Panjang password harus 8-12 karakter'}
+        len: {args: [6, 12], msg: 'Panjang password harus 8-12 karakter'}
       }
     },
     role: DataTypes.STRING
