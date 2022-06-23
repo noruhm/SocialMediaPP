@@ -9,6 +9,8 @@ class Controller{
 
     static showAllPost(req,res){
         const { search } = req.query
+        const { userId , username  } = req.session
+
         const options = {
             order:[['createdAt', 'DESC']]
         }
@@ -23,7 +25,7 @@ class Controller{
 
         Post.findAll(options)
         .then(post=>{
-            res.render('home', {post})
+            res.render('home', {post, userId, username})
         })
         .catch(err=>{
             console.log(err)
@@ -32,7 +34,26 @@ class Controller{
     }
 
     static profile(req,res){
-        res.send('profilee')
+        const { username } = req.params
+        const data ={}
+        User.findOne({where:{username:username}})
+        .then(user=>{
+            const id = user.id
+            return User.findByPk( +id, {
+                include: Post,
+                order: [['createdAt', 'DESC']]
+            })
+        })
+        .then(result=>{
+            data.result = result
+            return Tag.findAll()
+        })
+        .then(tag=>{
+            res.render('profile', {result:data.result, tag})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
     }
 
     static formAddPost(req,res){
@@ -49,8 +70,10 @@ class Controller{
     static addPost(req,res){
         const GetLocation = require('location-by-ip');
         const SPOTT_API_KEY = '4add49e12cmsh77b2507efa94f0ep1655eajsnce8669274ed4';
-
+        const { userId } = req.session
+        const { title, imgUrl ,TagId } = req.body
         let location =''
+
         const getLocation = new GetLocation(SPOTT_API_KEY)  
         getLocation.byMyIp()
         .then(data=>{
@@ -60,10 +83,8 @@ class Controller{
             console.log(err)
         })
 
-            const { title, imgUrl ,TagId} = req.body
         setTimeout(() => {
-            const UserId = 1
-            Post.create({title, imgUrl ,TagId: +TagId, UserId : +UserId, location})
+            Post.create({title, imgUrl ,TagId: +TagId, UserId : +userId, location})
             .then(result=>{
                 res.redirect('/home')
             })
@@ -72,6 +93,49 @@ class Controller{
                 res.send(err)
             })
         }, 2000);
+    }
+
+    static formEditPost(req,res){
+        const PostId = req.params.postId
+
+        let data = {}
+        Post.findByPk(+PostId, {
+            include: Tag
+        })
+        .then(result=>{
+            data.result = result
+            return Tag.findAll()
+        })
+        .then(tag=>{
+            res.render('formEditPost', {result: data.result, tag})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
+
+    static updatePost(req,res){
+        const PostId = req.params.postId
+        const { title, TagId } = req.body
+        const { username } = req.session
+
+        Post.update({ title, TagId }, {where:{ id : +PostId}})
+        .then(result=>{
+            res.redirect(`/profile/${username}`)
+        })
+    }
+
+    static deletePost(req,res){
+        const PostId = req.params.postId
+        const { username } = req.session
+
+        Post.destroy({where :{id: +PostId}})
+        .then(result=>{
+            res.redirect(`/profile/${username}`)
+        })
+        .catch(err=>{
+            res.send(err)
+        })
     }
 }
 

@@ -20,9 +20,11 @@ class UserController{
         User.create(newUser)
             .then(_ => res.redirect('/account/signin'))
             .catch(err => {
+                if(err.name = 'Sequelize')
                 err = err.errors.map(e => {
                     return e.message
                 })
+                console.log(err)
 
                 res.redirect(`/account/register/?err=${err}`)
             })
@@ -42,7 +44,7 @@ class UserController{
                     if(bcrypt.compareSync(password, result.password)){
 
                         req.session.userId = result.id
-
+                        req.session.username = result.username
                         return res.redirect('/home')
                     }else{
                         return res.redirect('/account/signin')

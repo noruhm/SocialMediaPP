@@ -27,11 +27,17 @@ router.get('/home', cekSignIn, Controller.showAllPost)
 
 router.use('/account', accountRoutes)
 
-router.get('/profile/', Controller.profile)
+router.get('/profile/:username', cekSignIn, Controller.profile)
 
-router.get('/addPost', Controller.formAddPost)
+router.get('/addPost', cekSignIn, Controller.formAddPost)
 
-router.post('/addPost', Controller.addPost)
+router.post('/addPost',cekSignIn, Controller.addPost)
+
+router.get('/edit/:postId', cekSignIn, Controller.formEditPost)
+
+router.post('/edit/:postId', cekSignIn, Controller.updatePost)
+
+router.get('/delete/:postId', cekSignIn, Controller.deletePost)
 
 
 

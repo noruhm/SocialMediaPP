@@ -7,7 +7,8 @@
     <title>Home</title>
 </head>
 <body>
-    <button><a href="/profile"> profile</a></button>
+    <button><a href="/profile/<%= username %>">My profile</a></button>
+    <button><a href="/addPost/">Add Post</a></button>
     <form action="/home" method="get">
         <input type="text" name="search" id="" placeholder="username"> <button type="submit">Search</button> 
     </form> <br>
